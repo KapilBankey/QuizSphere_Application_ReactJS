@@ -1,0 +1,78 @@
+.about-container {
+  border: 2px solid #B3C7E6;
+  padding: 20px;
+  margin: 20px;
+  text-align: left;
+  max-width: 1500px;
+  background-color: #F1F8FF;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+}
+
+.about-container h2 {
+  color: #333333;
+}
+
+.about-container ul {
+  list-style: none;
+  padding: 0;
+}
+
+.about-container li {
+  margin-bottom: 10px;
+}
+
+/* Responsive Design - Media Queries */
+
+/* For mobile devices */
+@media (max-width: 768px) {
+  .about-container {
+    padding: 15px;
+    margin: 10px;
+    max-width: 100%;
+  }
+
+  .about-container h2 {
+    font-size: 18px;
+  }
+
+  .about-container li {
+    font-size: 14px;
+  }
+}
+
+/* For tablets and small laptops (min-width: 769px and max-width: 1024px) */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .about-container {
+    padding: 18px;
+    margin: 15px;
+    max-width: 90%;
+  }
+
+  .about-container h2 {
+    font-size: 20px;
+  }
+
+  .about-container li {
+    font-size: 15px;
+  }
+}
+
+/* For larger devices like laptops and desktops */
+@media (min-width: 1025px) {
+  .about-container {
+    padding: 20px;
+    margin: 20px;
+    max-width: 1500px;
+  }
+
+  .about-container h2 {
+    font-size: 22px;
+  }
+
+  .about-container li {
+    font-size: 16px;
+  }
+}

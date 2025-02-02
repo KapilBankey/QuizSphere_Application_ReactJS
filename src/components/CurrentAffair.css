@@ -1,0 +1,78 @@
+
+.current-affair {
+  text-align: left;
+  padding: 20px;
+}
+
+.dropdowns {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.dropdowns select {
+  padding: 8px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.questions .question-card {
+  margin: 15px 0;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+
+.questions .options button {
+  padding: 8px 15px;
+  margin: 5px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.questions .options button.correct {
+  background-color: green;
+  color: white;
+}
+
+.questions .options button.incorrect {
+  background-color: red;
+  color: white;
+}
+
+.questions .options button:hover {
+  opacity: 0.8;
+}
+
+.answer-btn {
+  padding: 8px 15px;
+  margin-top: 10px;
+  background-color: #3D52A0;
+  color: white;
+  
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.answer-btn:hover {
+  background-color: #7091E6;
+}
+
+.answer {
+  margin-top: 10px;
+  font-weight: bold;
+  color: #3D52A0;
+}
+
+.error-message {
+  color: red;
+  font-weight: bold;
+}
+

@@ -1,0 +1,308 @@
+.history {
+  font-family: Arial, sans-serif;
+  margin: 20px;
+  padding: 10px;
+}
+
+/* Topic selection buttons */
+.topics-container {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.topic-button {
+  padding: 12px 18px;
+  background-color: #7091E6;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  border-radius: 8px;
+  transition: background 0.3s ease-in-out;
+}
+
+.topic-button:hover {
+  background-color: #3D52A0;
+}
+
+/* Question Cards */
+.question-card {
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  padding: 15px;
+  border-radius: 8px;
+  background: white;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Question Text */
+.question {
+  font-weight: bold;
+  margin-bottom: 12px;
+  font-size: 18px;
+  color: #333;
+}
+
+/* Options */
+.options {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.option-button {
+  display: block;
+  padding: 12px;
+  width: 100%;
+  margin: 5px 0;
+  border: 1px solid #ccc;
+  cursor: pointer;
+  text-align: left;
+  border-radius: 6px;
+  background-color: white;
+  transition: background 0.3s ease-in-out;
+  font-size: 16px;
+}
+
+.option-button.correct {
+  background-color: green;
+  color: white;
+}
+
+.option-button.incorrect {
+  background-color: red;
+  color: white;
+}
+
+/* Answer Button */
+.answer-button {
+  margin-top: 10px;
+  padding: 10px 14px;
+  background-color: #3D52A0;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 15px;
+  border-radius: 6px;
+  transition: background 0.3s ease-in-out;
+}
+
+.answer-button:hover {
+  background-color: #8697C4;
+}
+
+/* Answer text */
+.answer {
+  margin-top: 10px;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+/* ✅ RESPONSIVE DESIGN */
+
+/* 📱 Mobile (max-width: 600px) */
+@media (max-width: 600px) {
+  .history {
+    margin: 10px;
+    padding: 5px;
+  }
+
+  .topic-button {
+    font-size: 14px;
+    padding: 10px 15px;
+  }
+
+  .question {
+    font-size: 16px;
+  }
+
+  .option-button {
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  .answer-button {
+    font-size: 14px;
+    padding: 8px 12px;
+  }
+}
+
+/* 📱 Tablets (601px - 900px) */
+@media (max-width: 900px) {
+  .topics-container {
+    justify-content: center;
+  }
+
+  .question {
+    font-size: 17px;
+  }
+
+  .option-button {
+    font-size: 15px;
+  }
+
+  .answer-button {
+    font-size: 15px;
+  }
+}
+
+/* 💻 Large Screens (900px and above) */
+@media (min-width: 900px) {
+  .history {
+    max-width: 800px;
+    margin: auto;
+  }
+
+  .topics-container {
+    justify-content: flex-start;
+  }
+}
+/*.history {
+  font-family: Arial, sans-serif;
+  margin: 20px;
+}
+
+.topics-container {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.topic-button {
+  padding: 10px 20px;
+  background-color: #7091E6;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  border-radius: 5px;
+}
+
+.question-card {
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.question {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.options {
+  margin-bottom: 10px;
+}
+
+.option-button {
+  display: block;
+  padding: 10px;
+  width: 100%;
+  margin: 5px 0;
+  border: 1px solid #ccc;
+  cursor: pointer;
+  text-align: left;
+  border-radius: 5px;
+  background-color: white;
+  transition: background-color 0.3s;
+}
+
+.option-button.correct {
+  background-color: green;
+  color: white;
+}
+
+.option-button.incorrect {
+  background-color: red;
+  color: white;
+}
+
+.answer {
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+@media (max-width: 768px) {
+  .option-button {
+    font-size: 14px;
+    padding: 8px;
+  }
+
+  .topic-button {
+    font-size: 14px;
+    padding: 8px 15px;
+  }
+}
+/*.history {
+  font-family: Arial, sans-serif;
+  margin: 20px;
+}
+
+.topics-container {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.topic-button {
+  padding: 10px 20px;
+  background-color: #7091E6;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  border-radius: 5px;
+}
+
+.question-card {
+  margin-bottom: 20px;
+}
+
+.question {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.options {
+  margin-bottom: 10px;
+}
+
+.option-button {
+  display: block;
+  padding: 10px;
+  width: 100%;
+  margin: 5px 0;
+  border: 1px solid #ccc;
+  cursor: pointer;
+  text-align: left;
+}
+
+.option-button.correct {
+  background-color: green;
+  color: white;
+}
+
+.option-button.incorrect {
+  background-color: red;
+  color: white;
+}
+
+.answer-button {
+  padding: 10px 20px;
+  background-color: #3D52A0;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  border-radius: 5px;
+}
+
+.answer {
+  margin-top: 10px;
+  font-weight: bold;
+}
+*/

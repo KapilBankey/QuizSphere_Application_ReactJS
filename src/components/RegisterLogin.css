@@ -1,0 +1,235 @@
+/*.register-login-container {
+  width: 350px;
+  margin: 80px auto;
+  padding: 20px;
+  background: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  border-radius: 10px;
+}
+
+h2 {
+  color: #333;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+label {
+  text-align: left;
+  font-weight: bold;
+}
+
+input {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+button {
+  padding: 10px;
+  background-color: #ff9800;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 10px;
+}
+
+button:hover {
+  background-color: #e68900;
+}
+
+p {
+  margin-top: 10px;
+}
+
+span {
+  color: #ff9800;
+  cursor: pointer;
+  font-weight: bold;
+}
+*/
+/* Register/Login Button */
+
+/* Container */
+/*
+.register-login-container {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.login-btn {
+  padding: 8px 16px;
+  background-color: #3D52A0;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 320px;
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.modal-content {
+  position: relative;
+  text-align: center;
+}
+
+h2 {
+  margin-bottom: 15px;
+}
+
+label {
+  display: block;
+  text-align: left;
+  margin: 10px 0 5px;
+  font-weight: bold;
+}
+
+input {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+button {
+  width: 100%;
+  padding: 8px;
+  background-color: #3D52A0;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.toggle-text {
+  margin-top: 10px;
+  font-size: 14px;
+}
+
+.toggle-text span {
+  color: #3D52A0;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+/* Close Icon (Top-Right) *
+.close-icon {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 20px;
+  cursor: pointer;
+  color: #555;
+}
+
+.close-icon:hover {
+  color: #000;
+}
+*/
+
+/* Container *//* Scoped to .register-login-container */
+.register-login-container {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.register-login-container .login-btn {
+  padding: 8px 16px;
+  background-color: #3D52A0;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.register-login-container .modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 350px;
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.register-login-container .modal-content {
+  position: relative;
+  text-align: center;
+}
+
+.register-login-container h2 {
+  margin-bottom: 15px;
+}
+
+.register-login-container label {
+  display: block;
+  text-align: left;
+  margin: 10px 0 5px;
+  font-weight: bold;
+}
+
+.register-login-container input {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.register-login-container button {
+  width: 100%;
+  padding: 8px;
+  background-color: #3D52A0;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.register-login-container .toggle-text {
+  margin-top: 10px;
+  font-size: 14px;
+}
+
+.register-login-container .toggle-text span {
+  color: #3D52A0;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+/* Close Icon (Top-Right) */
+.register-login-container .close-icon {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 20px;
+  cursor: pointer;
+  color: #555;
+}
+
+.register-login-container .close-icon:hover {
+  color: #000;
+}

@@ -1,0 +1,57 @@
+.homepage {
+  text-align: center;
+  padding: 20px;
+}
+
+.header {
+  display: flex;
+  justify-content: space;
+  font-weight: bold;
+  color: #333;
+}
+
+.header h1 {
+  font-size: 28px;
+  font-weight: bold;
+  color: #555;
+}
+
+.sentences p {
+  font-size: 18px;
+  font-style: italic;
+  color: #777;
+  margin: 20px 0;
+  animation: fadeIn 1.5s ease-in-out;
+}
+
+.topics {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.topics button {
+  padding: 10px 20px;
+  font-size: 16px;
+  color: white;
+  background-color: #3D52A0;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.topics button:hover {
+  background-color: #2C3E75;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

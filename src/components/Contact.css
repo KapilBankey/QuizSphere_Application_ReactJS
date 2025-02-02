@@ -1,0 +1,74 @@
+.contact-container {
+  border: 2px solid #C4B69B;
+  padding: 20px;
+  margin: 20px;
+  text-align: left;
+  max-width: 1500px;
+  background-color: #F5F5DC;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+}
+
+.contact-container h2 {
+  color: #3E2723;
+}
+
+.contact-container p {
+  margin-bottom: 10px;
+  line-height: 1.6;
+}
+
+/* Responsive Design - Media Queries */
+
+/* For mobile devices */
+@media (max-width: 768px) {
+  .contact-container {
+    padding: 15px;
+    margin: 10px;
+    max-width: 100%;
+  }
+
+  .contact-container h2 {
+    font-size: 18px;
+  }
+
+  .contact-container p {
+    font-size: 14px;
+  }
+}
+
+/* For tablets and small laptops (min-width: 769px and max-width: 1024px) */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .contact-container {
+    padding: 18px;
+    margin: 15px;
+    max-width: 90%;
+  }
+
+  .contact-container h2 {
+    font-size: 20px;
+  }
+
+  .contact-container p {
+    font-size: 15px;
+  }
+}
+
+/* For larger devices like laptops and desktops */
+@media (min-width: 1025px) {
+  .contact-container {
+    padding: 20px;
+    margin: 20px;
+    max-width: 1500px;
+  }
+
+  .contact-container h2 {
+    font-size: 22px;
+  }
+
+  .contact-container p {
+    font-size: 16px;
+  }
+}
