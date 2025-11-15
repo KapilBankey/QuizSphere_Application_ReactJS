@@ -1,10 +1,18 @@
 import React, { useState } from "react";
 import "./RestTopic.css";
+import AttemptQuestionCard from "./Attempt-question-card";
 
 const RestTopic = () => {
   const [selectedTopic, setSelectedTopic] = useState("");
   const [questions, setQuestions] = useState([]);
   const [questionStates, setQuestionStates] = useState([]); // To track each question's state
+  const [showCompletionCard, setShowCompletionCard] = useState(false);
+  const [completionStats, setCompletionStats] = useState({
+    topicName: "",
+    totalQuestions: 0,
+    correctCount: 0,
+    incorrectCount: 0,
+  });
 
   const topics = [
     "Government Schemes",
@@ -35,6 +43,7 @@ const RestTopic = () => {
           answerRevealed: false,
         })
       ); // Initialize question states with answerRevealed
+      setShowCompletionCard(false);
     } catch (error) {
       console.error("Error fetching questions:", error);
     }
@@ -51,6 +60,39 @@ const RestTopic = () => {
       answerRevealed: false, // Ensure the answer is not revealed before clicking the "Answer" button
     };
     setQuestionStates(newQuestionStates);
+    checkCompletion(newQuestionStates);
+  };
+
+  const checkCompletion = (states) => {
+    if (questions.length === 0) return;
+
+    const allAnswered = states.every(
+      (state) => state.selectedAnswer !== null && state.selectedAnswer !== undefined
+    );
+
+    if (allAnswered) {
+      let correctCount = 0;
+      let incorrectCount = 0;
+
+      states.forEach((state) => {
+        if (state.selectedAnswer === state.correctAnswer) {
+          correctCount++;
+        } else if (state.selectedAnswer) {
+          incorrectCount++;
+        }
+      });
+
+      setCompletionStats({
+        topicName: selectedTopic,
+        totalQuestions: questions.length,
+        correctCount,
+        incorrectCount,
+      });
+
+      setTimeout(() => {
+        setShowCompletionCard(true);
+      }, 500);
+    }
   };
 
   const handleAnswerButtonClick = (questionIndex) => {
@@ -107,6 +149,7 @@ const RestTopic = () => {
                         optionLabel,
                         index
                       )}`}
+                      disabled={showCompletionCard}
                     >
                       {optionLabel}. {option}
                     </button>
@@ -125,6 +168,16 @@ const RestTopic = () => {
           ))}
         </div>
       )}
+
+      {/* Completion Card */}
+      <AttemptQuestionCard
+        topicName={completionStats.topicName}
+        totalQuestions={completionStats.totalQuestions}
+        correctCount={completionStats.correctCount}
+        incorrectCount={completionStats.incorrectCount}
+        isOpen={showCompletionCard}
+        onClose={() => setShowCompletionCard(false)}
+      />
     </div>
   );
 };

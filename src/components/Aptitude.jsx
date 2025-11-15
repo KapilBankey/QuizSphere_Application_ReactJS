@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./Aptitude.css";
+import AttemptQuestionCard from "./Attempt-question-card";
 
 const Aptitude = () => {
   const [questions, setQuestions] = useState([]);
@@ -8,6 +9,13 @@ const Aptitude = () => {
   const [showSolution, setShowSolution] = useState({});
   const [showAnswer, setShowAnswer] = useState({});
   const [selectedOptions, setSelectedOptions] = useState({}); // Stores selected options
+  const [showCompletionCard, setShowCompletionCard] = useState(false);
+  const [completionStats, setCompletionStats] = useState({
+    topicName: "",
+    totalQuestions: 0,
+    correctCount: 0,
+    incorrectCount: 0,
+  });
 
   const topics = [
     "Numbers",
@@ -44,6 +52,10 @@ const Aptitude = () => {
       setError("");
       setQuestions([]);
       setSelectedTopic(topic);
+      setSelectedOptions({});
+      setShowAnswer({});
+      setShowSolution({});
+      setShowCompletionCard(false);
 
       const response = await fetch(apiUrl);
       const data = await response.json();
@@ -69,13 +81,52 @@ const Aptitude = () => {
     const correctAnswer = extractCorrectAnswer(questions[questionIndex].answer);
 
     // Update the selected option state for this question
-    setSelectedOptions((prevSelectedOptions) => ({
-      ...prevSelectedOptions,
+    const newSelectedOptions = {
+      ...selectedOptions,
       [questionIndex]: {
         selectedOption,
         isCorrect: selectedOption.charAt(0) === correctAnswer, // Compare the option letter
       },
-    }));
+    };
+    setSelectedOptions(newSelectedOptions);
+
+    // Check if all questions are answered
+    checkCompletion(newSelectedOptions);
+  };
+
+  const checkCompletion = (options) => {
+    if (questions.length === 0) return;
+
+    // Check if all questions have been answered
+    const allAnswered = questions.every(
+      (_, index) => options[index] && options[index].selectedOption
+    );
+
+    if (allAnswered) {
+      // Calculate statistics
+      let correctCount = 0;
+      let incorrectCount = 0;
+
+      questions.forEach((_, index) => {
+        if (options[index]?.isCorrect) {
+          correctCount++;
+        } else if (options[index]?.selectedOption) {
+          incorrectCount++;
+        }
+      });
+
+      setCompletionStats({
+        topicName: selectedTopic,
+        totalQuestions: questions.length,
+        correctCount,
+        incorrectCount,
+      });
+
+      // Show completion card after a small delay
+      setTimeout(() => {
+        setShowCompletionCard(true);
+      }, 500);
+    }
   };
 
   const toggleSolution = (index) => {
@@ -129,6 +180,7 @@ const Aptitude = () => {
                       selected ? (isCorrect ? "correct" : "incorrect") : ""
                     }`}
                     onClick={() => handleOptionClick(index, option)}
+                    disabled={showCompletionCard}
                   >
                     {option}
                   </button>
@@ -160,6 +212,16 @@ const Aptitude = () => {
           </div>
         ))}
       </div>
+
+      {/* Completion Card */}
+      <AttemptQuestionCard
+        topicName={completionStats.topicName}
+        totalQuestions={completionStats.totalQuestions}
+        correctCount={completionStats.correctCount}
+        incorrectCount={completionStats.incorrectCount}
+        isOpen={showCompletionCard}
+        onClose={() => setShowCompletionCard(false)}
+      />
     </div>
   );
 };

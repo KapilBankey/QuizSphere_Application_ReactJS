@@ -226,6 +226,7 @@ export default History;*/
 
 import React, { useState } from "react";
 import "./History.css";
+import AttemptQuestionCard from "./Attempt-question-card";
 
 const History = () => {
   const [questions, setQuestions] = useState([]);
@@ -233,6 +234,13 @@ const History = () => {
   const [selectedTopic, setSelectedTopic] = useState("");
   const [selectedOptions, setSelectedOptions] = useState({});
   const [showAnswer, setShowAnswer] = useState({});
+  const [showCompletionCard, setShowCompletionCard] = useState(false);
+  const [completionStats, setCompletionStats] = useState({
+    topicName: "",
+    totalQuestions: 0,
+    correctCount: 0,
+    incorrectCount: 0,
+  });
 
   const topics = ["Ancient History", "Modern History", "Medieval History"];
 
@@ -248,6 +256,7 @@ const History = () => {
       setSelectedTopic(topic);
       setShowAnswer({});
       setSelectedOptions({});
+      setShowCompletionCard(false);
 
       const response = await fetch(apiUrl);
       const data = await response.json();
@@ -263,10 +272,47 @@ const History = () => {
   };
 
   const handleOptionClick = (questionIndex, selectedOptionLetter) => {
-    setSelectedOptions((prev) => ({
-      ...prev,
+    const newSelectedOptions = {
+      ...selectedOptions,
       [questionIndex]: selectedOptionLetter,
-    }));
+    };
+    setSelectedOptions(newSelectedOptions);
+    checkCompletion(newSelectedOptions);
+  };
+
+  const checkCompletion = (options) => {
+    if (questions.length === 0) return;
+
+    const allAnswered = questions.every(
+      (_, index) => options[index] !== undefined && options[index] !== null
+    );
+
+    if (allAnswered) {
+      let correctCount = 0;
+      let incorrectCount = 0;
+
+      questions.forEach((question, index) => {
+        const correctAnswerMatch = question.answer.match(/^Correct Answer: (\w)/);
+        const correctAnswerLetter = correctAnswerMatch ? correctAnswerMatch[1] : "";
+        const selectedOptionLetter = options[index];
+        if (selectedOptionLetter && selectedOptionLetter === correctAnswerLetter) {
+          correctCount++;
+        } else if (selectedOptionLetter) {
+          incorrectCount++;
+        }
+      });
+
+      setCompletionStats({
+        topicName: selectedTopic,
+        totalQuestions: questions.length,
+        correctCount,
+        incorrectCount,
+      });
+
+      setTimeout(() => {
+        setShowCompletionCard(true);
+      }, 500);
+    }
   };
 
   const toggleAnswer = (questionIndex) => {
@@ -321,6 +367,7 @@ const History = () => {
                         isSelected ? (isCorrect ? "correct" : "incorrect") : ""
                       }`}
                       onClick={() => handleOptionClick(index, optionLetter)}
+                      disabled={showCompletionCard}
                     >
                       {optionWithLetter}
                     </button>
@@ -342,6 +389,16 @@ const History = () => {
           );
         })}
       </div>
+
+      {/* Completion Card */}
+      <AttemptQuestionCard
+        topicName={completionStats.topicName}
+        totalQuestions={completionStats.totalQuestions}
+        correctCount={completionStats.correctCount}
+        incorrectCount={completionStats.incorrectCount}
+        isOpen={showCompletionCard}
+        onClose={() => setShowCompletionCard(false)}
+      />
     </div>
   );
 };

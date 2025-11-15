@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./Reasoning.css";
+import AttemptQuestionCard from "./Attempt-question-card";
 
 const Reasoning = () => {
   const [questions, setQuestions] = useState([]);
@@ -7,6 +8,13 @@ const Reasoning = () => {
   const [selectedTopic, setSelectedTopic] = useState("");
   const [showAnswer, setShowAnswer] = useState({});
   const [selectedOptions, setSelectedOptions] = useState({}); // Stores selected options
+  const [showCompletionCard, setShowCompletionCard] = useState(false);
+  const [completionStats, setCompletionStats] = useState({
+    topicName: "",
+    totalQuestions: 0,
+    correctCount: 0,
+    incorrectCount: 0,
+  });
 
   const topics = [
     "Verification of the Truth statement",
@@ -39,6 +47,9 @@ const Reasoning = () => {
       setError("");
       setQuestions([]);
       setSelectedTopic(topic);
+      setSelectedOptions({});
+      setShowAnswer({});
+      setShowCompletionCard(false);
 
       const response = await fetch(apiUrl);
       const data = await response.json();
@@ -54,10 +65,46 @@ const Reasoning = () => {
   };
 
   const handleOptionClick = (questionIndex, selectedOption) => {
-    setSelectedOptions((prevSelectedOptions) => ({
-      ...prevSelectedOptions,
+    const newSelectedOptions = {
+      ...selectedOptions,
       [questionIndex]: selectedOption,
-    }));
+    };
+    setSelectedOptions(newSelectedOptions);
+    checkCompletion(newSelectedOptions);
+  };
+
+  const checkCompletion = (options) => {
+    if (questions.length === 0) return;
+
+    const allAnswered = questions.every(
+      (_, index) => options[index] !== undefined && options[index] !== null
+    );
+
+    if (allAnswered) {
+      let correctCount = 0;
+      let incorrectCount = 0;
+
+      questions.forEach((question, index) => {
+        const correctAnswer = question.answer;
+        const selectedOption = options[index];
+        if (selectedOption && correctAnswer === selectedOption.charAt(0)) {
+          correctCount++;
+        } else if (selectedOption) {
+          incorrectCount++;
+        }
+      });
+
+      setCompletionStats({
+        topicName: selectedTopic,
+        totalQuestions: questions.length,
+        correctCount,
+        incorrectCount,
+      });
+
+      setTimeout(() => {
+        setShowCompletionCard(true);
+      }, 500);
+    }
   };
 
   const toggleAnswer = (index) => {
@@ -108,6 +155,7 @@ const Reasoning = () => {
                           : ""
                       }`}
                       onClick={() => handleOptionClick(index, option)}
+                      disabled={showCompletionCard}
                     >
                       {option}
                     </button>
@@ -129,6 +177,16 @@ const Reasoning = () => {
           );
         })}
       </div>
+
+      {/* Completion Card */}
+      <AttemptQuestionCard
+        topicName={completionStats.topicName}
+        totalQuestions={completionStats.totalQuestions}
+        correctCount={completionStats.correctCount}
+        incorrectCount={completionStats.incorrectCount}
+        isOpen={showCompletionCard}
+        onClose={() => setShowCompletionCard(false)}
+      />
     </div>
   );
 };

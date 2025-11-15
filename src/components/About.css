@@ -1,78 +1,211 @@
 .about-container {
-  border: 2px solid #B3C7E6;
-  padding: 20px;
-  margin: 20px;
-  text-align: left;
-  max-width: 1500px;
-  background-color: #F1F8FF;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  margin-left: auto;
-  margin-right: auto;
-  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  min-height: 100vh;
 }
 
-.about-container h2 {
-  color: #333333;
+.about-hero {
+  text-align: center;
+  margin-bottom: 60px;
+  padding: 40px 20px;
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
 }
 
-.about-container ul {
-  list-style: none;
-  padding: 0;
+.about-hero h1 {
+  font-size: 3rem;
+  color: #2c3e50;
+  margin-bottom: 20px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
-.about-container li {
-  margin-bottom: 10px;
+.hero-description {
+  font-size: 1.2rem;
+  color: #555;
+  line-height: 1.8;
+  max-width: 800px;
+  margin: 0 auto;
 }
 
-/* Responsive Design - Media Queries */
+.about-mission {
+  text-align: center;
+  margin-bottom: 60px;
+  padding: 30px;
+  background: white;
+  border-radius: 15px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+}
 
-/* For mobile devices */
+.about-mission h2 {
+  font-size: 2.2rem;
+  color: #2c3e50;
+  margin-bottom: 20px;
+}
+
+.about-mission p {
+  font-size: 1.1rem;
+  color: #666;
+  line-height: 1.8;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.topics-section,
+.features-section {
+  margin-bottom: 60px;
+}
+
+.topics-section h2,
+.features-section h2 {
+  text-align: center;
+  font-size: 2.5rem;
+  color: #2c3e50;
+  margin-bottom: 40px;
+}
+
+.topics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 25px;
+  margin-bottom: 40px;
+}
+
+.topic-card {
+  background: white;
+  padding: 30px 20px;
+  border-radius: 15px;
+  text-align: center;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 2px solid transparent;
+}
+
+.topic-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+  border-color: #667eea;
+}
+
+.topic-icon {
+  font-size: 3.5rem;
+  margin-bottom: 15px;
+}
+
+.topic-card h3 {
+  font-size: 1.4rem;
+  color: #2c3e50;
+  margin-bottom: 15px;
+}
+
+.topic-card p {
+  color: #666;
+  line-height: 1.6;
+  font-size: 0.95rem;
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+}
+
+.feature-card {
+  background: white;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border-left: 4px solid #667eea;
+}
+
+.feature-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+.feature-icon {
+  font-size: 2.5rem;
+  margin-bottom: 15px;
+}
+
+.feature-card h3 {
+  font-size: 1.3rem;
+  color: #2c3e50;
+  margin-bottom: 12px;
+}
+
+.feature-card p {
+  color: #666;
+  line-height: 1.7;
+  font-size: 1rem;
+}
+
+.about-cta {
+  text-align: center;
+  padding: 50px 30px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 20px;
+  color: white;
+  box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+}
+
+.about-cta h2 {
+  font-size: 2.5rem;
+  margin-bottom: 15px;
+  color: white;
+}
+
+.about-cta p {
+  font-size: 1.2rem;
+  opacity: 0.95;
+}
+
+/* Responsive Design */
 @media (max-width: 768px) {
   .about-container {
-    padding: 15px;
-    margin: 10px;
-    max-width: 100%;
+    padding: 20px 15px;
   }
 
-  .about-container h2 {
-    font-size: 18px;
+  .about-hero h1 {
+    font-size: 2rem;
   }
 
-  .about-container li {
-    font-size: 14px;
+  .hero-description {
+    font-size: 1rem;
+  }
+
+  .topics-grid,
+  .features-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .topics-section h2,
+  .features-section h2 {
+    font-size: 1.8rem;
+  }
+
+  .about-cta h2 {
+    font-size: 1.8rem;
+  }
+
+  .about-cta p {
+    font-size: 1rem;
   }
 }
 
-/* For tablets and small laptops (min-width: 769px and max-width: 1024px) */
 @media (min-width: 769px) and (max-width: 1024px) {
-  .about-container {
-    padding: 18px;
-    margin: 15px;
-    max-width: 90%;
+  .topics-grid {
+    grid-template-columns: repeat(2, 1fr);
   }
 
-  .about-container h2 {
-    font-size: 20px;
-  }
-
-  .about-container li {
-    font-size: 15px;
-  }
-}
-
-/* For larger devices like laptops and desktops */
-@media (min-width: 1025px) {
-  .about-container {
-    padding: 20px;
-    margin: 20px;
-    max-width: 1500px;
-  }
-
-  .about-container h2 {
-    font-size: 22px;
-  }
-
-  .about-container li {
-    font-size: 16px;
+  .features-grid {
+    grid-template-columns: repeat(2, 1fr);
   }
 }

@@ -129,8 +129,8 @@ const App = () => {
             <Route path="/register-login" element={<RegisterLogin />} />
             <Route path="/aptitude" element={<Aptitude />} />
             <Route path="/current-affair" element={<CurrentAffair />} />
-            <Route path="reasoning" element={<Reasoning />} />
-            <Route path="History" element={<History />} />
+            <Route path="/reasoning" element={<Reasoning />} />
+            <Route path="/history" element={<History />} />
             <Route path="/rest-topic" element={<RestTopic />} />
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />

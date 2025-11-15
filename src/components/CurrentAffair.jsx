@@ -1,11 +1,19 @@
 import React, { useState, useEffect } from "react";
 import "./CurrentAffair.css";
+import AttemptQuestionCard from "./Attempt-question-card";
 
 const CurrentAffair = () => {
   const [month, setMonth] = useState("");
   const [year, setYear] = useState("");
   const [questions, setQuestions] = useState([]);
   const [error, setError] = useState(null);
+  const [showCompletionCard, setShowCompletionCard] = useState(false);
+  const [completionStats, setCompletionStats] = useState({
+    topicName: "",
+    totalQuestions: 0,
+    correctCount: 0,
+    incorrectCount: 0,
+  });
 
   const fetchQuestions = async () => {
     if (!month || !year) return;
@@ -38,6 +46,43 @@ const CurrentAffair = () => {
     const updatedQuestions = [...questions];
     updatedQuestions[questionIndex].selectedOption = selectedOption;
     setQuestions(updatedQuestions);
+    checkCompletion(updatedQuestions);
+  };
+
+  const checkCompletion = (updatedQuestions) => {
+    if (updatedQuestions.length === 0) return;
+
+    const allAnswered = updatedQuestions.every(
+      (q) => q.selectedOption !== undefined && q.selectedOption !== null
+    );
+
+    if (allAnswered) {
+      let correctCount = 0;
+      let incorrectCount = 0;
+
+      updatedQuestions.forEach((question) => {
+        if (question.selectedOption && question.answer) {
+          if (question.answer.includes(question.selectedOption)) {
+            correctCount++;
+          } else {
+            incorrectCount++;
+          }
+        }
+      });
+
+      const topicName = `Current Affairs - ${month.charAt(0).toUpperCase() + month.slice(1)} ${year}`;
+
+      setCompletionStats({
+        topicName,
+        totalQuestions: updatedQuestions.length,
+        correctCount,
+        incorrectCount,
+      });
+
+      setTimeout(() => {
+        setShowCompletionCard(true);
+      }, 500);
+    }
   };
 
   return (
@@ -93,6 +138,7 @@ const CurrentAffair = () => {
                         : "incorrect"
                       : ""
                   }
+                  disabled={showCompletionCard}
                 >
                   {option}
                 </button>
@@ -116,6 +162,16 @@ const CurrentAffair = () => {
           </div>
         ))}
       </div>
+
+      {/* Completion Card */}
+      <AttemptQuestionCard
+        topicName={completionStats.topicName}
+        totalQuestions={completionStats.totalQuestions}
+        correctCount={completionStats.correctCount}
+        incorrectCount={completionStats.incorrectCount}
+        isOpen={showCompletionCard}
+        onClose={() => setShowCompletionCard(false)}
+      />
     </div>
   );
 };

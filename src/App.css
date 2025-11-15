@@ -1,8 +1,8 @@
 
 .app {
-  font-family: Arial, sans-serif;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   text-align: center;
-  background-color: #F5F5F5;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
   color: #333;
   min-height: 100vh;
   display: flex;
@@ -14,48 +14,109 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 20px;
-  background-color: #282c34;
+  padding: 30px 20px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
   text-align: center;
   position: relative;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
 }
 
 /* Logo styling: circular and top-left position */
 .logo {
   position: absolute;
-  top: 10px;
-  left: 10px;
-  width: 60px;
-  height: 60px;
+  top: 15px;
+  left: 20px;
+  width: 70px;
+  height: 70px;
   border-radius: 50%;
   object-fit: cover;
-  border: 2px solid white;
+  border: 3px solid white;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease;
+}
+
+.logo:hover {
+  transform: scale(1.1) rotate(5deg);
 }
 
 /* Sentence styling */
+.app-header h1 {
+  font-size: 2.5rem;
+  margin: 0;
+  margin-top: 10px;
+  margin-bottom: 15px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+  font-weight: 700;
+}
+
 .sentence {
-  font-weight: bold;
-  margin-top: 20px;
-  font-size: 20px;
+  font-weight: 600;
+  margin-top: 15px;
+  margin-bottom: 10px;
+  font-size: 1.2rem;
+  opacity: 0.95;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+  animation: fadeIn 0.5s ease;
+  min-height: 30px;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 0.95;
+    transform: translateY(0);
+  }
 }
 
 /* Navbar styling */
 .navbar {
   display: flex;
   justify-content: center;
-  margin-top: 20px;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-top: 25px;
+  padding: 15px 10px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  backdrop-filter: blur(10px);
 }
 
 .navbar a {
-  margin: 0 15px;
+  padding: 10px 20px;
   color: white;
   text-decoration: none;
   font-size: 16px;
+  font-weight: 500;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.navbar a::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.2);
+  transition: left 0.3s ease;
+}
+
+.navbar a:hover::before {
+  left: 0;
 }
 
 .navbar a:hover {
-  color: #7091E6;
+  color: white;
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
 /* About and Contact Info positioning */
@@ -84,9 +145,13 @@
 
 /* Main content area */
 .app-main {
-  margin-top: 50px;
-  padding: 20px;
+  flex: 1;
+  padding: 20px 20px;
   text-align: center;
+  max-width: 1400px;
+  margin: 0 auto;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 /* Responsive Design - Media Queries */
@@ -94,119 +159,109 @@
 /* For mobile devices */
 @media (max-width: 768px) {
   .app-header {
-    padding: 15px;
+    padding: 20px 15px;
   }
 
-  .logo {
-    width: 50px;
-    height: 50px;
-    top: 5px;
-    left: 5px;
-  }
-
-  .sentence {
-    font-size: 18px;
-    margin-top: 15px;
-  }
-
-  .navbar {
-    flex-direction: column;
-    margin-top: 10px;
-  }
-
-  .navbar a {
-    margin: 10px 0;
-    font-size: 14px;
-  }
-
-  .about-contact {
-    top: 5px;
-    right: 5px;
-  }
-
-  .about a, .contact a {
-    font-size: 12px;
-  }
-
-  .app-main {
-    margin-top: 30px;
-  }
-}
-
-/* For tablets and small laptops (min-width: 769px and max-width: 1024px) */
-@media (min-width: 769px) and (max-width: 1024px) {
-  .app-header {
-    padding: 18px;
+  .app-header h1 {
+    font-size: 1.8rem;
+    margin-top: 60px;
   }
 
   .logo {
     width: 55px;
     height: 55px;
-    top: 8px;
-    left: 8px;
+    top: 10px;
+    left: 10px;
   }
 
   .sentence {
-    font-size: 19px;
-    margin-top: 18px;
+    font-size: 1rem;
+    margin-top: 10px;
+    padding: 0 10px;
   }
 
   .navbar {
-    flex-direction: row;
+    gap: 8px;
+    padding: 12px 8px;
+    margin-top: 15px;
   }
 
   .navbar a {
-    margin: 0 12px;
+    padding: 8px 15px;
+    font-size: 14px;
+  }
+
+  .app-main {
+    padding: 20px 15px;
+  }
+}
+
+/* For tablets and small laptops */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .app-header {
+    padding: 25px 18px;
+  }
+
+  .app-header h1 {
+    font-size: 2.2rem;
+  }
+
+  .logo {
+    width: 65px;
+    height: 65px;
+    top: 12px;
+    left: 15px;
+  }
+
+  .sentence {
+    font-size: 1.1rem;
+  }
+
+  .navbar {
+    gap: 12px;
+  }
+
+  .navbar a {
+    padding: 10px 18px;
     font-size: 15px;
   }
 
-  .about-contact {
-    top: 8px;
-    right: 8px;
-  }
-
-  .about a, .contact a {
-    font-size: 13px;
+  .app-main {
+    padding: 20px 20px;
   }
 }
 
 /* For larger devices like laptops and desktops */
 @media (min-width: 1025px) {
   .app-header {
-    padding: 20px;
+    padding: 20px 20px;
+  }
+
+  .app-header h1 {
+    font-size: 2.5rem;
   }
 
   .logo {
-    width: 60px;
-    height: 60px;
-    top: 10px;
-    left: 10px;
+    width: 70px;
+    height: 70px;
+    top: 15px;
+    left: 20px;
   }
 
   .sentence {
-    font-size: 20px;
-    margin-top: 20px;
+    font-size: 1.2rem;
   }
 
   .navbar {
-    flex-direction: row;
+    gap: 15px;
   }
 
   .navbar a {
-    margin: 0 15px;
+    padding: 10px 20px;
     font-size: 16px;
   }
 
-  .about-contact {
-    top: 10px;
-    right: 10px;
-  }
-
-  .about a, .contact a {
-    font-size: 14px;
-  }
-
   .app-main {
-    margin-top: 50px;
+    padding: 20px 20px;
   }
 }
