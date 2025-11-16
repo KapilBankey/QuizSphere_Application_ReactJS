@@ -3,6 +3,10 @@ import emailjs from "emailjs-com";
 import "./Feedback.css";
 
 const Feedback = () => {
+  const SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+  const TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+  const PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -23,15 +27,15 @@ const Feedback = () => {
 
     try {
       await emailjs.send(
-        "service_w433t5n", // Service ID
-        "template_u2qnp7m", // Template ID
+        SERVICE_ID, // Service ID
+        TEMPLATE_ID, // Template ID
         {
           name: formData.name,
           email: formData.email,
           rating: formData.rating || "Not provided",
           message: formData.message,
         },
-        "_otMUuF0oa0Lg038S" // Public Key
+        PUBLIC_KEY // Public Key
       );
 
       setSubmitStatus("success");
